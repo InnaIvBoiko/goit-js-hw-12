@@ -49,12 +49,13 @@ body {
   border-color: #000;
 }
 
-.btn-search {
+.btn {
   display: flex;
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  max-width: 125px;
   color: #fff;
   font-weight: 500;
   border-radius: 8px;
@@ -64,7 +65,7 @@ body {
   transition: background-color 250ms linear, cursor 250ms linear;
 }
 
-.btn-search:hover {
+.btn:hover {
   background-color: #6c8cff;
 }
 
@@ -74,6 +75,13 @@ body {
   text-align: center;
 }
 /* < =========== render-functions =========== > */
+
+.gallery-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
 
 .gallery {
   display: flex;
@@ -108,6 +116,7 @@ body {
   text-align: center;
   font-size: 12px;
 }
+
 h2 {
   text-transform: capitalize;
   font-size: 14px;
@@ -119,6 +128,7 @@ h2 {
   position: relative;
   display: flex;
 }
+
 .loader:before,
 .loader:after {
   content: '';
@@ -133,6 +143,7 @@ h2 {
   box-shadow: 50px 0, -50px 0;
   animation: left 1s infinite ease-in-out;
 }
+
 .loader:after {
   color: #4e75ff;
   animation: right 1.1s infinite ease-in-out;

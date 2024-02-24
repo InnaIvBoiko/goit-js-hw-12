@@ -5,7 +5,6 @@ const formSearch = document.querySelector('.form-search');
 const showMoreBtn = document.querySelector('.btn-more');
 
 let page = 1;
-let keyForSearch;
 
 formSearch.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -14,8 +13,6 @@ formSearch.addEventListener('submit', (event) => {
     
     if (keywords.value) {
         loading.classList.remove('visually-hidden');
-        keyForSearch = encodeURIComponent(keywords.value);
-        localStorage.setItem("KEY_FOR_SEARCH", keyForSearch);
 
         searchImg()
             .then(data => {
@@ -30,7 +27,6 @@ formSearch.addEventListener('submit', (event) => {
                 markUp(images);
             })
             .catch(() => {
-                localStorage.removeItem('KEY_FOR_SEARCH');
                 errorMessage();
             })
             .finally(() => {
@@ -51,6 +47,5 @@ showMoreBtn.addEventListener('click', (event) => {
             loading.classList.add('visually-hidden');
             errorSeeMore();
             page = 1;
-            localStorage.removeItem('KEY_FOR_SEARCH');
         });
 });

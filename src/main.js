@@ -7,6 +7,7 @@ const showMoreBtn = document.querySelector('.btn-more');
 formSearch.addEventListener('submit', (event) => {
     event.preventDefault();
     gallery.innerHTML = '';
+    showMoreBtn.classList.add('visually-hidden');
     
     if (keywords.value) {
         loading.classList.remove('visually-hidden');

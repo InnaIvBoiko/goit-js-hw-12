@@ -1,14 +1,11 @@
-import { keywords, loading, perPage, searchImg, seeMoreFunction, errorMessage, errorSeeMore } from './js/pixabay-api';
-import { gallery, markUp } from "./js/render-functions";
+import { keywords, loading, page, perPage, searchImg, seeMoreFunction, errorMessage, errorSeeMore } from './js/pixabay-api';
+import { gallery, markUp, scroll } from "./js/render-functions";
 
 const formSearch = document.querySelector('.form-search');
 const showMoreBtn = document.querySelector('.btn-more');
 
-let page = 1;
-
 formSearch.addEventListener('submit', (event) => {
     event.preventDefault();
-
     gallery.innerHTML = '';
     
     if (keywords.value) {
@@ -25,9 +22,11 @@ formSearch.addEventListener('submit', (event) => {
             })
             .then((images) => {
                 markUp(images);
+                scroll();
             })
             .catch(() => {
                 errorMessage();
+                localStorage.clear();
             })
             .finally(() => {
                 formSearch.reset();
@@ -41,11 +40,12 @@ showMoreBtn.addEventListener('click', (event) => {
     seeMoreFunction()
         .then((images) => {
             markUp(images);
+            scroll();
         })
         .catch(() => {
             showMoreBtn.classList.add('visually-hidden');
             loading.classList.add('visually-hidden');
             errorSeeMore();
-            page = 1;
+            localStorage.clear();
         });
 });

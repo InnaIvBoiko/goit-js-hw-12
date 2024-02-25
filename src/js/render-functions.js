@@ -39,7 +39,22 @@ function markUp(images) {
         captionsData: 'alt',
         captionDelay: 250,
         captionPosition: 'bottom'
-    }).refresh();
-};      
+    });
+    lightbox.refresh();
+}; 
+
+function scroll() {
+    const galleryCard = document.querySelector('.gallery-item');
+    const galleryCardData = galleryCard.getBoundingClientRect();
+    const galleryCardHeight = 2 * galleryCardData.height;
+
+    setTimeout(() => {
+        window.scrollBy({
+        top: galleryCardHeight,
+        left: 0,
+        behavior: 'smooth',
+        });
+    }, 1000);
+};
            
-export { gallery, markUp };
+export { gallery, markUp, scroll };

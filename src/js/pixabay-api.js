@@ -13,8 +13,6 @@ const API_URL = 'https://pixabay.com/api/';
 const perPage = 15;
 let page = 1;
 
-
-
 async function searchImg() {
     page = 1;
 
@@ -33,7 +31,6 @@ async function searchImg() {
 };
 
 async function seeMoreFunction() {
-    
     loading.classList.remove('visually-hidden');
     const totalHits = localStorage.getItem('TOTAL_HITS');
         
@@ -45,6 +42,7 @@ async function seeMoreFunction() {
     
         const more = await axios.get(URL);
         loading.classList.add('visually-hidden'); 
+
         return more.data.hits;
     };
 };
@@ -59,7 +57,7 @@ const errorMessage = () =>
         position: 'topRight',
         close: true,
         layout: 2,
-        timeout: 2000
+        timeout: 3000
     });
 
 const errorSeeMore = () =>
@@ -67,12 +65,12 @@ const errorSeeMore = () =>
         message: `We're sorry, but you've reached the end of search results.`,
         messageColor: '#fff',
         messageSize: '16',
-        backgroundColor: '#EF4040',
+        backgroundColor: '#FFA000',
         iconUrl: ErrorIcon,
         position: 'topRight',
         close: true,
         layout: 2,
-        timeout: 2000
+        timeout: 3000
     });
 
-export { keywords, loading, perPage, searchImg, seeMoreFunction, errorMessage, errorSeeMore };
+export { keywords, loading, page, perPage, searchImg, seeMoreFunction, errorMessage, errorSeeMore };

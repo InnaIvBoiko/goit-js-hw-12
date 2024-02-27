@@ -1,5 +1,5 @@
 import { keywords, loading, page, perPage, searchImg, seeMoreFunction, errorMessage, errorSeeMore } from './js/pixabay-api';
-import { gallery, markUp, scroll } from "./js/render-functions";
+import { gallery, lightbox, markUp, scroll } from "./js/render-functions";
 
 const formSearch = document.querySelector('.form-search');
 const showMoreBtn = document.querySelector('.btn-more');
@@ -23,11 +23,11 @@ formSearch.addEventListener('submit', (event) => {
             })
             .then((images) => {
                 markUp(images);
+                lightbox();
                 scroll();
             })
             .catch(() => {
                 errorMessage();
-                localStorage.clear();
             })
             .finally(() => {
                 formSearch.reset();
@@ -39,14 +39,21 @@ showMoreBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
     seeMoreFunction()
+        .then((data) => {
+            if (data.totalHits < ((page + 1) * perPage)) {
+                showMoreBtn.classList.add('visually-hidden'); 
+                loading.classList.add('visually-hidden'); 
+                errorSeeMore();
+            }
+            return data.hits;
+        })
         .then((images) => {
             markUp(images);
+            lightbox();
             scroll();
         })
         .catch(() => {
             showMoreBtn.classList.add('visually-hidden');
             loading.classList.add('visually-hidden');
-            errorSeeMore();
-            localStorage.clear();
         });
 });

@@ -43,7 +43,7 @@ async function seeMoreFunction() {
         const more = await axios.get(URL);
         loading.classList.add('visually-hidden'); 
 
-        return more.data.hits;
+        return more.data;
     };
 };
         

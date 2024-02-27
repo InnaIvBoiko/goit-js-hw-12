@@ -40,7 +40,7 @@ showMoreBtn.addEventListener('click', (event) => {
 
     seeMoreFunction()
         .then((data) => {
-            if (data.totalHits < ((page + 1) * perPage)) {
+            if (data.totalHits < (page * perPage)) {
                 showMoreBtn.classList.add('visually-hidden'); 
                 loading.classList.add('visually-hidden'); 
                 errorSeeMore();

@@ -35,21 +35,14 @@ function markUp(images) {
         .join('');
         
     gallery.insertAdjacentHTML('beforeend', resalt);
-    // const lightbox = new SimpleLightbox('.gallery a', {
-    //     captionsData: 'alt',
-    //     captionDelay: 250,
-    //     captionPosition: 'bottom'
-    // });
-    // lightbox.refresh();
 }; 
+    
+const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionDelay: 250,
+    captionPosition: 'bottom'
+});
 
-function lightbox() {
-    new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-        captionPosition: 'bottom'
-    }).refresh();
-};
 
 function scroll() {
     const galleryCard = document.querySelector('.gallery-item');

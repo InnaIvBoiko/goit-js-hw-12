@@ -23,7 +23,7 @@ formSearch.addEventListener('submit', (event) => {
             })
             .then((images) => {
                 markUp(images);
-                lightbox();
+                lightbox.refresh();
                 scroll();
             })
             .catch(() => {
@@ -49,7 +49,7 @@ showMoreBtn.addEventListener('click', (event) => {
         })
         .then((images) => {
             markUp(images);
-            lightbox();
+            lightbox.refresh();
             scroll();
         })
         .catch(() => {
